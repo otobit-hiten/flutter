@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_note_app/home_screen.dart';
 import 'package:flutter_note_app/blocs/bloc.dart';
-import 'blocs/bloc.dart';
 
 
 void main() {

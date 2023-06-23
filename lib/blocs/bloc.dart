@@ -3,7 +3,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_note_app/blocs/state.dart';
 import 'event.dart';
-import 'package:flutter_note_app/blocs/bloc.dart';
 
 class InternetBloc extends Bloc<InternetEvent, InternetState> {
   final Connectivity _connectivity = Connectivity();
