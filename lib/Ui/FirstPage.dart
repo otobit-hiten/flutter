@@ -5,7 +5,6 @@ import 'package:flutter_login/Bloc/bloc_bloc.dart';
 import 'package:flutter_login/Repository/repository.dart';
 import 'package:flutter_login/Ui/ErrorScreen.dart';
 import 'package:flutter_login/Ui/HomeScreen.dart';
-import 'package:flutter_login/Ui/LoadingScreen.dart';
 
 import 'LoginScreen.dart';
 
@@ -34,13 +33,9 @@ class _FirstPageState extends State<FirstPage> {
         return const LoginScreen();
       }, listener: (context, state) {
         if (state is LoginSuccessState) {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen(state.data)),
-              (route) => false);
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen(state.data)), (route) => false);
         } else if (state is LoginErrorState) {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const ErrorScreen()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ErrorScreen()));
         }
       }),
     ));

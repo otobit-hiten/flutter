@@ -1,133 +1,134 @@
-// To parse this JSON data, do
-//
-//     final loginModel = loginModelFromJson(jsonString);
-
-import 'dart:convert';
-
-LoginModel loginModelFromJson(String str) => LoginModel.fromJson(json.decode(str));
-
-String loginModelToJson(LoginModel data) => json.encode(data.toJson());
-
 class LoginModel {
-  bool success;
-  Data data;
+  bool? success;
+  String? message;
+  String? name;
+  String? stack;
+  Data? data;
 
-  LoginModel({
-    required this.success,
-    required this.data,
-  });
+  LoginModel({this.success, this.data, this.name, this.message, this.stack});
 
-  factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-    success: json["success"],
-    data: Data.fromJson(json["data"]),
-  );
+  LoginModel.fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    message = json['message'];
+    name = json['name'];
+    stack = json['stack'];
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+  }
 
-  Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": data.toJson(),
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['success'] = this.success;
+    data['message'] = this.message;
+    data['name'] = this.name;
+    data['stack'] = this.stack;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
 }
 
 class Data {
-  String accessToken;
-  String refreshToken;
-  User user;
+  String? accessToken;
+  String? refreshToken;
+  User? user;
 
-  Data({
-    required this.accessToken,
-    required this.refreshToken,
-    required this.user,
-  });
+  Data({this.accessToken, this.refreshToken, this.user});
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    accessToken: json["accessToken"],
-    refreshToken: json["refreshToken"],
-    user: User.fromJson(json["user"]),
-  );
+  Data.fromJson(Map<String, dynamic> json) {
+    accessToken = json['accessToken'];
+    refreshToken = json['refreshToken'];
+    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+  }
 
-  Map<String, dynamic> toJson() => {
-    "accessToken": accessToken,
-    "refreshToken": refreshToken,
-    "user": user.toJson(),
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['accessToken'] = this.accessToken;
+    data['refreshToken'] = this.refreshToken;
+    if (this.user != null) {
+      data['user'] = this.user!.toJson();
+    }
+    return data;
+  }
 }
 
 class User {
-  int id;
-  String name;
-  String phoneNumber;
-  String email;
-  bool isLocked;
-  DateTime lastLogin;
-  dynamic lastActivity;
-  String gender;
-  DateTime birthdate;
-  DateTime createdAt;
-  Role role;
+  int? id;
+  String? name;
+  String? phoneNumber;
+  String? email;
+  bool? isLocked;
+  String? lastLogin;
+  Null? lastActivity;
+  String? gender;
+  String? birthdate;
+  String? createdAt;
+  Role? role;
 
-  User({
-    required this.id,
-    required this.name,
-    required this.phoneNumber,
-    required this.email,
-    required this.isLocked,
-    required this.lastLogin,
-    this.lastActivity,
-    required this.gender,
-    required this.birthdate,
-    required this.createdAt,
-    required this.role,
-  });
+  User(
+      {this.id,
+        this.name,
+        this.phoneNumber,
+        this.email,
+        this.isLocked,
+        this.lastLogin,
+        this.lastActivity,
+        this.gender,
+        this.birthdate,
+        this.createdAt,
+        this.role});
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-    id: json["id"],
-    name: json["name"],
-    phoneNumber: json["phoneNumber"],
-    email: json["email"],
-    isLocked: json["isLocked"],
-    lastLogin: DateTime.parse(json["lastLogin"]),
-    lastActivity: json["lastActivity"],
-    gender: json["gender"],
-    birthdate: DateTime.parse(json["birthdate"]),
-    createdAt: DateTime.parse(json["createdAt"]),
-    role: Role.fromJson(json["role"]),
-  );
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    phoneNumber = json['phoneNumber'];
+    email = json['email'];
+    isLocked = json['isLocked'];
+    lastLogin = json['lastLogin'];
+    lastActivity = json['lastActivity'];
+    gender = json['gender'];
+    birthdate = json['birthdate'];
+    createdAt = json['createdAt'];
+    role = json['role'] != null ? new Role.fromJson(json['role']) : null;
+  }
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "phoneNumber": phoneNumber,
-    "email": email,
-    "isLocked": isLocked,
-    "lastLogin": lastLogin.toIso8601String(),
-    "lastActivity": lastActivity,
-    "gender": gender,
-    "birthdate": "${birthdate.year.toString().padLeft(4, '0')}-${birthdate.month.toString().padLeft(2, '0')}-${birthdate.day.toString().padLeft(2, '0')}",
-    "createdAt": createdAt.toIso8601String(),
-    "role": role.toJson(),
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['phoneNumber'] = this.phoneNumber;
+    data['email'] = this.email;
+    data['isLocked'] = this.isLocked;
+    data['lastLogin'] = this.lastLogin;
+    data['lastActivity'] = this.lastActivity;
+    data['gender'] = this.gender;
+    data['birthdate'] = this.birthdate;
+    data['createdAt'] = this.createdAt;
+    if (this.role != null) {
+      data['role'] = this.role!.toJson();
+    }
+    return data;
+  }
 }
 
 class Role {
-  int id;
-  String name;
-  DateTime createdAt;
+  int? id;
+  String? name;
+  String? createdAt;
 
-  Role({
-    required this.id,
-    required this.name,
-    required this.createdAt,
-  });
+  Role({this.id, this.name, this.createdAt});
 
-  factory Role.fromJson(Map<String, dynamic> json) => Role(
-    id: json["id"],
-    name: json["name"],
-    createdAt: DateTime.parse(json["createdAt"]),
-  );
+  Role.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    createdAt = json['createdAt'];
+  }
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "createdAt": createdAt.toIso8601String(),
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['createdAt'] = this.createdAt;
+    return data;
+  }
 }

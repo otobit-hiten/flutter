@@ -49,20 +49,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                MaterialButton(
-                  onPressed: () => BlocProvider.of<BlocBloc>(context).add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
-                  color: Colors.blue,
-                  child: const Text('Submit',
-                      style: TextStyle(color: Colors.white)),
-                ), 
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ErrorScreen()));
-                  },
-                  color: Colors.blue,
-                  child: const Text('Submit',
-                      style: TextStyle(color: Colors.white)),
-                ),
+                Center(
+                  child: GestureDetector(
+                    onLongPress: () => BlocProvider.of<BlocBloc>(context).add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
+                    onTap: () => BlocProvider.of<BlocBloc>(context).add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
+                    child: MaterialButton(
+                      onPressed: () => BlocProvider.of<BlocBloc>(context).add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
+                      color: Colors.blue,
+                      child: const Text('Submit',
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                )
               ],
             )
       )
