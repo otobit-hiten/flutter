@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_login/Ui/ErrorScreen.dart';
 
 import '../Bloc/bloc_bloc.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -12,13 +13,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController phoneCtrl =  TextEditingController();
-  TextEditingController pinCtrl =  TextEditingController();
+  TextEditingController phoneCtrl = TextEditingController();
+  TextEditingController pinCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
+        home: Scaffold(
+            appBar: AppBar(
               title: const Text('Login Screen'),
             ),
             body: Column(
@@ -50,20 +52,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Center(
-                  child: GestureDetector(
-                    onLongPress: () => BlocProvider.of<BlocBloc>(context).add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
-                    onTap: () => BlocProvider.of<BlocBloc>(context).add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
-                    child: MaterialButton(
-                      onPressed: () => BlocProvider.of<BlocBloc>(context).add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
-                      color: Colors.blue,
-                      child: const Text('Submit',
-                          style: TextStyle(color: Colors.white)),
-                    ),
+                  child: MaterialButton(
+                    onPressed: () => BlocProvider.of<BlocBloc>(context)
+                        .add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
+                    color: Colors.blue,
+                    child: const Text('Submit',
+                        style: TextStyle(color: Colors.white)),
                   ),
                 )
               ],
-            )
-      )
-    );
+            )));
   }
 }

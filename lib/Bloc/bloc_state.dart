@@ -13,3 +13,14 @@ class LoginSuccessState extends BlocState{
   final LoginModel data;
   LoginSuccessState(this.data);
 }
+
+class UpdateInitial extends BlocState{}
+
+class UpdateLoading extends BlocState{}
+
+class UpdateError extends BlocState{}
+
+class UpdateSuccess extends BlocState{
+  final ModelUpdate modelUpdate;
+  UpdateSuccess(this.modelUpdate);
+}
