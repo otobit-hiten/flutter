@@ -3,7 +3,8 @@ class ModelUpdate {
   String? email;
   Null? lastLogin;
   Null? lastActivity;
-  Null? gender;
+  String? gender;
+  String? phoneNumber;
   Null? birthdate;
   Null? pin;
   String? message;
@@ -16,6 +17,7 @@ class ModelUpdate {
         this.lastActivity,
         this.gender,
         this.birthdate,
+        this.phoneNumber,
         this.pin,
         this.message,
         this.stack
@@ -29,6 +31,7 @@ class ModelUpdate {
     gender = json['gender'];
     birthdate = json['birthdate'];
     pin = json['pin'];
+    phoneNumber = json['phoneNumber'];
     message = json['message'];
     stack = json['stack'];
   }
@@ -42,6 +45,7 @@ class ModelUpdate {
     data['gender'] = this.gender;
     data['birthdate'] = this.birthdate;
     data['pin'] = this.pin;
+    data['phoneNumber'] = this.phoneNumber;
     return data;
   }
 }

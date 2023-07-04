@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_login/Model/LoginModel.dart';
+import 'package:flutter_login/Model/ModelGetRole.dart';
 import 'package:flutter_login/Model/ModelUpdate.dart';
 import 'package:flutter_login/Repository/repository.dart';
 import 'package:meta/meta.dart';
@@ -26,7 +27,7 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
      }
      if(event is UpdateEvent){
        emit(UpdateLoading());
-       modelUpdate = await loginRepo.update(event.email, event.id);
+       modelUpdate = await loginRepo.update(event.phoneNumber, event.gender, event.email, event.id, event.role);
        if(modelUpdate.id != null){
          emit(UpdateSuccess(modelUpdate));
        }else{

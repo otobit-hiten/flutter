@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:flutter_login/Model/ModelGetRole.dart';
 import 'package:http/http.dart' as http;
 import '../Model/LoginModel.dart';
 import '../Model/ModelUpdate.dart';
+
 
 abstract class Repository {
   Future<LoginModel> loginCall(String phoneNumber, String pin);
@@ -31,11 +33,18 @@ class LoginRepo extends Repository {
     }
   }
 
-  Future<ModelUpdate> update(String email, String id) async {
+  Future<ModelUpdate> update(String email, String id, String phoneNumber, String  gender, DataRoles role) async {
     try {
       log(id);
-      log(id);
-      final bodyy = jsonEncode({"email": email});
+      log(phoneNumber);
+      log(gender);
+      log(email);
+      final bodyy = jsonEncode({
+        "phoneNumber": phoneNumber,
+        "email": email,
+        "gender": gender,
+        "role": role
+      });
 
       var response = await client.patch(Uri.parse('http://192.168.1.221:4000/user/$id'),
           headers: {
@@ -48,7 +57,6 @@ class LoginRepo extends Repository {
     } catch (e) {
       log(updateModel.toString());
       log(e.toString());
-      log(http.Response as String);
       throw Exception("Failed to update");
     }
   }
