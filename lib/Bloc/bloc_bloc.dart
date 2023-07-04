@@ -27,7 +27,7 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
      if(event is UpdateEvent){
        emit(UpdateLoading());
        modelUpdate = await loginRepo.update(event.email, event.id);
-       if(modelUpdate.message != null){
+       if(modelUpdate.id != null){
          emit(UpdateSuccess(modelUpdate));
        }else{
          emit(UpdateError());

@@ -9,9 +9,8 @@ import '../Repository/repository.dart';
 
 class HomeScreen extends StatefulWidget {
   final LoginModel data;
-  final ModelUpdate updatedata;
 
-  const HomeScreen(this.data, this.updatedata, {super.key});
+  const HomeScreen(this.data, {super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -53,8 +52,184 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               case UpdateError :
                 return const Center(
-                  child: Text('Error Updste'),
+                  child: Text('Error Update'),
                 );
+              case UpdateSuccess:
+                final success = state as UpdateSuccess;
+                return Scaffold(
+                    appBar: AppBar(
+                      title: const Text('Home Screen'),
+                      actions: [
+                        if (update)
+                          IconButton(
+                            onPressed: () {
+                              BlocProvider.of<BlocBloc>(context).add(UpdateEvent(emailCtrl.text, id));
+                              setState(() {
+                                update = !update;
+                              });
+                            },
+                            icon: const Icon(Icons.check),
+                          ),
+                      ],
+                    ),
+                    body: Center(
+                      child: ListView(
+                        children: [
+                          SizedBox(
+                              height: 100,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    update = true;
+                                  });
+                                },
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0)),
+                                    child: Row(children: [
+                                      const Text("Phone: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      Text("${widget.data.data?.user?.phoneNumber}",
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      SizedBox(width: 20),
+                                      if (update == true)
+                                        Expanded(
+                                            child: SizedBox(
+                                              width: 150,
+                                              child: TextField(
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(10)
+                                                ],
+                                                controller: phoneCtrl,
+                                                keyboardType: TextInputType.number,
+                                                decoration: const InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                ),
+                                              ),
+                                            ))
+                                    ])),
+                              )),
+                          SizedBox(
+                              height: 100,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    update = true;
+                                  });
+                                },
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0)),
+                                    child: Row(children: [
+                                      const Text("Role: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      Text("${widget.data.data?.user?.role?.name}",
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      SizedBox(width: 20),
+                                      if (update == true)
+                                        Expanded(
+                                            child: SizedBox(
+                                              width: 150,
+                                              child: TextField(
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(10)
+                                                ],
+                                                controller: roleCtrl,
+                                                keyboardType: TextInputType.number,
+                                                decoration: const InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                ),
+                                              ),
+                                            ))
+                                    ])),
+                              )),
+                          SizedBox(
+                              height: 100,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    update = true;
+                                  });
+                                },
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0)),
+                                    child: Row(children: [
+                                      const Text("Email: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      Text("${success.modelUpdate.email}",
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      SizedBox(width: 20),
+                                      if (update == true)
+                                        Expanded(
+                                            child: SizedBox(
+                                              width: 150,
+                                              child: TextField(
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(20)
+                                                ],
+                                                controller: emailCtrl,
+                                                keyboardType: TextInputType.emailAddress,
+                                                decoration: const InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                ),
+                                              ),
+                                            ))
+                                    ])),
+                              )),
+                          SizedBox(
+                              height: 100,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    update = true;
+                                  });
+                                },
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0)),
+                                    child: Row(children: [
+                                      const Text("Gender: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      Text("${widget.data.data?.user?.gender}",
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      SizedBox(width: 20),
+                                      if (update == true)
+                                        Expanded(
+                                            child: SizedBox(
+                                              width: 150,
+                                              child: TextField(
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(10)
+                                                ],
+                                                controller: genderCtrl,
+                                                keyboardType: TextInputType.number,
+                                                decoration: const InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                ),
+                                              ),
+                                            ))
+                                    ])),
+                              )),
+                        ],
+                      ),
+                    ));
               default: return Scaffold(
                   appBar: AppBar(
                     title: const Text('Home Screen'),
@@ -177,7 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             width: 150,
                                             child: TextField(
                                               inputFormatters: [
-                                                LengthLimitingTextInputFormatter(10)
+                                                LengthLimitingTextInputFormatter(20)
                                               ],
                                               controller: emailCtrl,
                                               keyboardType: TextInputType.emailAddress,
@@ -230,12 +405,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ));
             }
-          }, listener: (context, state){
-            if(state is UpdateSuccess){
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen(LoginModel(),state.modelUpdate)), (route) => false);
-            }
-          }),
-
+          }, listener: (context, state){}
+          ),
         )
     );
   }

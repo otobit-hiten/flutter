@@ -34,7 +34,7 @@ class _FirstPageState extends State<FirstPage> {
         return const LoginScreen();
       }, listener: (context, state) {
         if (state is LoginSuccessState) {
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen(state.data,ModelUpdate())), (route) => false);
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen(state.data)), (route) => false);
         } else if (state is LoginErrorState) {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ErrorScreen()));
         }
