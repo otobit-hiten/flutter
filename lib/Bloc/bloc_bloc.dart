@@ -18,6 +18,7 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
     on<BlocEvent>((event, emit) async {
      if(event is LoginFetchEvent){
        emit(LoginLoading());
+       await Future.delayed(Duration(seconds: 1));
        loginModel = await loginRepo.loginCall(event.phoneNumber, event.pin);
        if(loginModel.success == true){
          emit(LoginSuccessState(loginModel));
@@ -27,6 +28,7 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
      }
      if(event is UpdateEvent){
        emit(UpdateLoading());
+       await Future.delayed(Duration(seconds: 1));
        modelUpdate = await loginRepo.update(event.phoneNumber, event.gender, event.email, event.id, event.roleId);
        if(modelUpdate.id != null){
          emit(UpdateSuccess(modelUpdate));

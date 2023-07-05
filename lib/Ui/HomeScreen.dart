@@ -249,13 +249,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: Container(
                                                 padding: const EdgeInsets.only(right:10),
                                                 width: 150,
+                                                height: 60,
                                                 child: FutureBuilder(
                                                   future: getRoleList(),
                                                   builder: (context, dataHere) {
                                                     return dataHere.hasData
                                                         ? DropdownButtonFormField(
+                                                      decoration: const InputDecoration(
+                                                        enabledBorder: OutlineInputBorder( //<-- SEE HERE
+                                                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                                                        ),
+                                                        focusedBorder: OutlineInputBorder( //<-- SEE HERE
+                                                          borderSide: BorderSide(color: Colors.white, width: 2),
+                                                        ),
+                                                        filled: true,
+                                                      ),
                                                       icon: Icon(Icons.arrow_drop_down,color: Colors.white,),
-
                                                       dropdownColor: Colors.black,
                                                             hint: Container(
                                                               padding: const EdgeInsets.only(left:10),
@@ -313,8 +322,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                           : Expanded(
                                               child: Container(
                                                 width: 150,
+                                                height: 60,
                                                 padding: const EdgeInsets.only(right:10),
                                               child: DropdownButtonFormField(
+                                                  decoration: const InputDecoration(
+                                                    enabledBorder: OutlineInputBorder( //<-- SEE HERE
+                                                      borderSide: BorderSide(color: Colors.grey, width: 2),
+                                                    ),
+                                                    focusedBorder: OutlineInputBorder( //<-- SEE HERE
+                                                      borderSide: BorderSide(color: Colors.white, width: 2),
+                                                    ),
+                                                    filled: true,
+                                                  ),
                                                   icon: Icon(Icons.arrow_drop_down,color: Colors.white),
                                                   dropdownColor: Colors.black,
                                                   hint: Container(
@@ -509,13 +528,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                           : Expanded(
                                               child: Container(
                                                 padding: const EdgeInsets.only(right:10),
-                                                height: 50,
+                                                height: 60,
                                                 width: 150,
                                               child: FutureBuilder(
                                                   future: getRoleList(),
                                                   builder: (context, dataHere) {
                                                     return dataHere.hasData
                                                         ? DropdownButtonFormField(
+                                                      decoration: const InputDecoration(
+                                                        enabledBorder: OutlineInputBorder( //<-- SEE HERE
+                                                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                                                        ),
+                                                        focusedBorder: OutlineInputBorder( //<-- SEE HERE
+                                                          borderSide: BorderSide(color: Colors.white, width: 2),
+                                                        ),
+                                                        filled: true,
+                                                      ),
                                                       icon: Icon(Icons.arrow_drop_down,color: Colors.white,),
                                                       dropdownColor: Colors.black,
                                                       hint: Container(
@@ -573,25 +601,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: Container(
                                                   padding: const EdgeInsets.only(right:10),
                                                   width: 150,
+                                                  height: 60,
                                                   child:
                                                       DropdownButtonFormField(
-                                                        icon: Icon(Icons.arrow_drop_down,color: Colors.white,),
+                                                        decoration: const InputDecoration(
+                                                          enabledBorder: OutlineInputBorder( //<-- SEE HERE
+                                                            borderSide: BorderSide(color: Colors.grey, width: 2),
+                                                          ),
+                                                          focusedBorder: OutlineInputBorder( //<-- SEE HERE
+                                                            borderSide: BorderSide(color: Colors.white, width: 2),
+                                                          ),
+                                                          filled: true,
+                                                        ),
+                                                        icon: const Icon(Icons.arrow_drop_down,color: Colors.white),
                                                           dropdownColor: Colors.black,
                                                           hint: Container(
                                                             padding: const EdgeInsets.only(left:10),
-                                                            child: const Text(
-                                                                "Enter Gender", style: TextStyle(color: Colors.white),),
+                                                            child: const Text("Enter Gender", style: TextStyle(color: Colors.white)),
                                                           ),
-                                                          items: listGender.map<
-                                                              DropdownMenuItem<
-                                                                  String>>((item) {
+                                                          items: listGender.map<DropdownMenuItem<String>>((item) {
                                                             return DropdownMenuItem(
                                                                 value: item,
-                                                                child: Text(item,style: TextStyle(color: Colors.white),));
+                                                                child: Text(item,style: TextStyle(color: Colors.white)));
                                                           }).toList(),
                                                           onChanged: (value) {
-                                                            selectedGender =
-                                                                value!;
+                                                            selectedGender = value!;
                                                           })),
                                             )
                                     ])),
