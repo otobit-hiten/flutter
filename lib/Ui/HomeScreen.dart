@@ -97,8 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     body: Center(
                       child: ListView(
                         children: [
-                          SizedBox(
-                              height: 75,
+                          Container(
+                              padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                              height: 85,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -160,8 +161,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                               )),
                                         ])),
                               )),
-                          SizedBox(
-                              height: 75,
+                          Container(
+                              padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                              height: 85,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -219,8 +221,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ))
                                     ])),
                               )),
-                          SizedBox(
-                              height: 75,
+                          Container(
+                              padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                              height: 85,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -292,8 +295,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ))
                                     ])),
                               )),
-                          SizedBox(
-                              height: 75,
+                          Container(
+                              padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                              height: 85,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -381,8 +385,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     body: Center(
                       child: ListView(
                         children: [
-                          SizedBox(
-                              height: 75,
+                          Container(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                              height: 85,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -444,8 +449,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             )),
                                     ])),
                               )),
-                          SizedBox(
-                              height: 75,
+                          Container(
+                              padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                              height: 85,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -501,8 +507,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ))
                                     ])),
                               )),
-                          SizedBox(
-                              height: 75,
+                          Container(
+                              padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                              height: 85,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -571,8 +578,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ))
                                     ])),
                               )),
-                          SizedBox(
-                              height: 75,
+                          Container(
+                              padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                              height: 85,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
