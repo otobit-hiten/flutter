@@ -75,7 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 emailCtrl.text = "${success.modelUpdate.email}";
                 genderCtrl.text = "${success.modelUpdate.gender}";
                 return Scaffold(
+                  backgroundColor: Colors.black,
                     appBar: AppBar(
+                      backgroundColor: Colors.black,
                       title: const Text('Home Screen'),
                       actions: [
                         if (update)
@@ -96,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListView(
                         children: [
                           SizedBox(
-                              height: 100,
+                              height: 75,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -104,41 +106,62 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: Card(
+                                    color: Colors.grey.withOpacity(0.4),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    child: Row(children: [
-                                      const Text("Phone: ",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500)),
-                                      !update
-                                          ? Text(
+                                        BorderRadius.circular(10.0)),
+                                    child: Row(
+                                        children: [
+                                          const SizedBox(height: 10,width: 10,),
+                                          const Text("Phone: ",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500)),
+                                          !update
+                                              ? Text(
                                               "${success.modelUpdate.phoneNumber}",
                                               style: const TextStyle(
                                                   fontSize: 20,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w500))
-                                          : Expanded(
-                                              child: SizedBox(
-                                              width: 150,
-                                              child: TextField(
-                                                inputFormatters: [
-                                                  LengthLimitingTextInputFormatter(
-                                                      10)
-                                                ],
-                                                controller: phoneCtrl,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                decoration:
-                                                    const InputDecoration(
-                                                  border: OutlineInputBorder(),
+                                              : Expanded(
+                                              child: Container(
+                                                padding: const EdgeInsets.only(right:10),
+                                                width: 150,
+                                                height: 50,
+                                                child: TextField(
+                                                  style: const TextStyle(
+                                                      color: Colors.white
+                                                  ),
+                                                  inputFormatters: [
+                                                    LengthLimitingTextInputFormatter(
+                                                        10)
+                                                  ],
+                                                  controller: phoneCtrl,
+                                                  cursorColor: Colors.white,
+                                                  keyboardType:
+                                                  TextInputType.number,
+                                                  decoration:
+                                                  const InputDecoration(
+                                                    focusedBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            width: 2, color:  Colors.white
+                                                        )
+                                                    ),
+                                                    enabledBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            width: 2, color: Colors.grey
+                                                        )
+                                                    ),
+                                                    fillColor: Colors.white,
+                                                  ),
                                                 ),
-                                              ),
-                                            ))
-                                    ])),
+                                              )),
+                                        ])),
                               )),
                           SizedBox(
-                              height: 100,
+                              height: 75,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -146,23 +169,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: Card(
+                                    color: Colors.grey.withOpacity(0.4),
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
+                                        borderRadius: BorderRadius.circular(10.0)),
                                     child: Row(children: [
+                                      const SizedBox(height: 10,width: 10,),
                                       const Text("Email: ",
                                           style: TextStyle(
                                               fontSize: 20,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w500)),
                                       !update
                                           ? Text("${success.modelUpdate.email}",
                                               style: const TextStyle(
                                                   fontSize: 20,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w500))
                                           : Expanded(
-                                              child: SizedBox(
-                                              width: 150,
-                                              child: TextField(
+                                              child: Container(
+                                                height: 50,
+                                                width: 150,
+                                                padding: const EdgeInsets.only(right:10),
+                                                child: TextField(
+                                                style: const TextStyle(
+                                                    color: Colors.white
+                                                ),
                                                 inputFormatters: [
                                                   LengthLimitingTextInputFormatter(
                                                       20)
@@ -172,14 +203,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     TextInputType.emailAddress,
                                                 decoration:
                                                     const InputDecoration(
-                                                  border: OutlineInputBorder(),
+                                                      focusedBorder: OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              width: 2, color:  Colors.white
+                                                          )
+                                                      ),
+                                                      enabledBorder: OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              width: 2, color: Colors.grey
+                                                          )
+                                                      ),
+                                                      fillColor: Colors.white,
                                                 ),
                                               ),
                                             ))
                                     ])),
                               )),
                           SizedBox(
-                              height: 100,
+                              height: 75,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -187,36 +228,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: Card(
+                                    color: Colors.grey.withOpacity(0.4),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0)),
                                     child: Row(children: [
+                                      const SizedBox(height: 10,width: 10,),
                                       const Text("Role: ",
                                           style: TextStyle(
                                               fontSize: 20,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w500)),
                                       !update
                                           ? Text("${roleName}",
                                               style: const TextStyle(
                                                   fontSize: 20,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w500))
                                           : Expanded(
-                                              child: SizedBox(
-                                              child: FutureBuilder(
+                                              child: Container(
+                                                padding: const EdgeInsets.only(right:10),
+                                                width: 150,
+                                                child: FutureBuilder(
                                                   future: getRoleList(),
                                                   builder: (context, dataHere) {
                                                     return dataHere.hasData
                                                         ? DropdownButtonFormField(
-                                                            hint: const Text(
-                                                                "Enter Role"),
+                                                      icon: Icon(Icons.arrow_drop_down,color: Colors.white,),
+
+                                                      dropdownColor: Colors.black,
+                                                            hint: Container(
+                                                              padding: const EdgeInsets.only(left:10),
+                                                              child: const Text("Enter Role",style: TextStyle(
+                                                                color: Colors.white
+                                                              ),),
+                                                            ),
                                                             items: dataHere.data?.map<
-                                                                DropdownMenuItem<
-                                                                    int>>((item) {
+                                                                DropdownMenuItem<int>>((item) {
                                                               return DropdownMenuItem(
-                                                                  value:
-                                                                      item.id,
+                                                                  value: item.id,
                                                                   child: Text(item
-                                                                      .name!));
+                                                                      .name!,style: TextStyle(color: Colors.white),));
                                                             }).toList(),
                                                             onChanged: (value) {
                                                               selectedRoleId =
@@ -232,7 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ])),
                               )),
                           SizedBox(
-                              height: 100,
+                              height: 75,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -240,31 +292,42 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: Card(
+                                  color: Colors.grey.withOpacity(0.3),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0)),
                                     child: Row(children: [
+                                      const SizedBox(height: 10,width: 10,),
                                       const Text("Gender: ",
                                           style: TextStyle(
                                               fontSize: 20,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w500)),
                                       !update
                                           ? Text(
                                               "${success.modelUpdate.gender}",
                                               style: const TextStyle(
                                                   fontSize: 20,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w500))
                                           : Expanded(
-                                              child: SizedBox(
+                                              child: Container(
+                                                width: 150,
+                                                padding: const EdgeInsets.only(right:10),
                                               child: DropdownButtonFormField(
-                                                  hint: const Text(
-                                                      "Enter Gender"),
+                                                  icon: Icon(Icons.arrow_drop_down,color: Colors.white),
+                                                  dropdownColor: Colors.black,
+                                                  hint: Container(
+                                                    padding: const EdgeInsets.only(left:10),
+                                                    child: const Text(
+                                                        "Enter Gender", style: TextStyle(color: Colors.white),),
+                                                  ),
                                                   items: listGender.map<
                                                       DropdownMenuItem<
                                                           String>>((item) {
                                                     return DropdownMenuItem(
                                                         value: item,
-                                                        child: Text(item));
+                                                        child: Text(item, style: TextStyle(color: Colors.white),));
                                                   }).toList(),
                                                   onChanged: (value) {
                                                     selectedGender = value!;
@@ -277,7 +340,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ));
               default:
                 return Scaffold(
+                    backgroundColor: Colors.black,
                     appBar: AppBar(
+                      backgroundColor: Colors.black,
                       title: const Text('Home Screen'),
                       actions: [
                         if (update)
@@ -298,7 +363,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListView(
                         children: [
                           SizedBox(
-                              height: 100,
+                              height: 75,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -306,41 +371,62 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: Card(
+                                    color: Colors.grey.withOpacity(0.4),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0)),
-                                    child: Row(children: [
+                                    child: Row(
+                                        children: [
+                                          const SizedBox(height: 10,width: 10,),
                                       const Text("Phone: ",
                                           style: TextStyle(
                                               fontSize: 20,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w500)),
                                       !update
                                           ? Text(
                                               "${widget.data.data?.user?.phoneNumber}",
                                               style: const TextStyle(
                                                   fontSize: 20,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w500))
                                           : Expanded(
-                                              child: SizedBox(
+                                              child: Container(
+                                                padding: const EdgeInsets.only(right:10),
                                               width: 150,
+                                              height: 50,
                                               child: TextField(
+                                                style: const TextStyle(
+                                                  color: Colors.white
+                                                ),
                                                 inputFormatters: [
                                                   LengthLimitingTextInputFormatter(
                                                       10)
                                                 ],
                                                 controller: phoneCtrl,
+                                                cursorColor: Colors.white,
                                                 keyboardType:
                                                     TextInputType.number,
                                                 decoration:
                                                     const InputDecoration(
-                                                  border: OutlineInputBorder(),
+                                                      focusedBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          width: 2, color:  Colors.white
+                                                        )
+                                                      ),
+                                                      enabledBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          width: 2, color: Colors.grey
+                                                        )
+                                                      ),
+                                                      fillColor: Colors.white,
                                                 ),
                                               ),
                                             )),
                                     ])),
                               )),
                           SizedBox(
-                              height: 100,
+                              height: 75,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -348,41 +434,56 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: Card(
+                                    color: Colors.grey.withOpacity(0.4),
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
+                                        borderRadius: BorderRadius.circular(10.0)),
                                     child: Row(children: [
+                                      const SizedBox(height: 10,width: 10,),
                                       const Text("Email: ",
                                           style: TextStyle(
                                               fontSize: 20,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w500)),
                                       !update
-                                          ? Text(
-                                              "${widget.data.data?.user?.email}",
-                                              style: const TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500))
+                                          ? Text("${widget.data.data?.user?.email}",
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500))
                                           : Expanded(
-                                              child: SizedBox(
-                                              width: 150,
-                                              child: TextField(
-                                                inputFormatters: [
-                                                  LengthLimitingTextInputFormatter(
-                                                      20)
-                                                ],
-                                                controller: emailCtrl,
-                                                keyboardType:
-                                                    TextInputType.emailAddress,
-                                                decoration:
-                                                    const InputDecoration(
-                                                  border: OutlineInputBorder(),
+                                          child: Container(
+                                            padding: const EdgeInsets.only(right:10),
+                                            height: 50,
+                                            width: 150,
+                                            child: TextField(
+                                              style: const TextStyle(color: Colors.white),
+                                              inputFormatters: [
+                                                LengthLimitingTextInputFormatter(
+                                                    20)
+                                              ],
+                                              controller: emailCtrl,
+                                              keyboardType:
+                                              TextInputType.emailAddress,
+                                              decoration:
+                                              const InputDecoration(
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 2, color:  Colors.white
+                                                    )
                                                 ),
+                                                enabledBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 2, color: Colors.grey
+                                                    )
+                                                ),
+                                                fillColor: Colors.white,
                                               ),
-                                            ))
+                                            ),
+                                          ))
                                     ])),
                               )),
                           SizedBox(
-                              height: 100,
+                              height: 75,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -390,30 +491,36 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: Card(
+                                    color: Colors.grey.withOpacity(0.4),
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    child: Row(children: [
+                                        borderRadius: BorderRadius.circular(10.0)),
+                                    child: Row(
+                                        children: [
+                                      const SizedBox(height: 10,width: 10,),
                                       const Text("Role: ",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500)),
+                                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,color: Colors.white)),
                                       !update
                                           ? Text(
                                               "${widget.data.data?.user?.role?.name}",
                                               style: const TextStyle(
                                                   fontSize: 20,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w500))
                                           : Expanded(
-                                              child: SizedBox(
-                                              width: 150,
+                                              child: Container(
+                                                padding: const EdgeInsets.only(right:10),
+                                                height: 50,
+                                                width: 150,
                                               child: FutureBuilder(
                                                   future: getRoleList(),
                                                   builder: (context, dataHere) {
                                                     return dataHere.hasData
                                                         ? DropdownButtonFormField(
-                                                            hint: const Text(
-                                                                "Enter Role"),
+                                                      icon: Icon(Icons.arrow_drop_down,color: Colors.white,),
+                                                      dropdownColor: Colors.black,
+                                                      hint: Container(
+                                                                padding: const EdgeInsets.only(left:10),
+                                                                child: const Text("Enter Role",style: TextStyle(color: Colors.white),)),
                                                             items: dataHere.data?.map<
                                                                 DropdownMenuItem<
                                                                     int>>((item) {
@@ -421,7 +528,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                   value:
                                                                       item.id,
                                                                   child: Text(item
-                                                                      .name!));
+                                                                      .name!,style: TextStyle(color: Colors.white)));
                                                             }).toList(),
                                                             onChanged: (value) {
                                                               selectedRoleId =
@@ -437,7 +544,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ])),
                               )),
                           SizedBox(
-                              height: 100,
+                              height: 75,
                               child: GestureDetector(
                                 onTap: () {
                                   if(update == false){
@@ -445,34 +552,42 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: Card(
+                                    color: Colors.grey.withOpacity(0.4),
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
+                                        borderRadius: BorderRadius.circular(10.0)),
                                     child: Row(children: [
+                                      const SizedBox(height: 10,width: 10,),
                                       const Text("Gender: ",
                                           style: TextStyle(
                                               fontSize: 20,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w500)),
                                       !update
                                           ? Text(
                                               "${widget.data.data?.user?.gender}",
                                               style: const TextStyle(
                                                   fontSize: 20,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w500))
                                           : Expanded(
-                                              child: SizedBox(
+                                              child: Container(
+                                                  padding: const EdgeInsets.only(right:10),
                                                   width: 150,
                                                   child:
                                                       DropdownButtonFormField(
-                                                          hint: const Text(
-                                                              "Enter Gender"),
+                                                        icon: Icon(Icons.arrow_drop_down,color: Colors.white,),
+                                                          dropdownColor: Colors.black,
+                                                          hint: Container(
+                                                            padding: const EdgeInsets.only(left:10),
+                                                            child: const Text(
+                                                                "Enter Gender", style: TextStyle(color: Colors.white),),
+                                                          ),
                                                           items: listGender.map<
                                                               DropdownMenuItem<
                                                                   String>>((item) {
                                                             return DropdownMenuItem(
                                                                 value: item,
-                                                                child:
-                                                                    Text(item));
+                                                                child: Text(item,style: TextStyle(color: Colors.white),));
                                                           }).toList(),
                                                           onChanged: (value) {
                                                             selectedGender =

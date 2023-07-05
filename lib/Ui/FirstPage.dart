@@ -27,14 +27,18 @@ class _FirstPageState extends State<FirstPage> {
       child: BlocConsumer<BlocBloc, BlocState>(
           builder: (BuildContext context, state) {
         if (state is LoginLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return const MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
           );
         }
         return const LoginScreen();
       }, listener: (context, state) {
         if (state is LoginSuccessState) {
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen(state.data)), (route) => false);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(state.data)));
         } else if (state is LoginErrorState) {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ErrorScreen()));
         }
