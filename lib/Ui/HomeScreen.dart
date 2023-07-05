@@ -24,10 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
   final BlocBloc blocBloc = BlocBloc(LoginRepo());
   bool update = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg4NDc1MTc3LCJleHAiOjE2OTAyMDMxNzd9.iqfpLMmieEUIsz-7fCYkXok5ZSrWiABOCh0Bp-xZvHM";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg4NTMyMTk3LCJleHAiOjE2OTAyNjAxOTd9.eZGQ-qjqQb_wlNnwL_9PpdURXKzgN1jc1aClz2SYJdc";
   List<String> listGender = <String>['Male', 'Female', 'Others'];
   String selectedGender = "";
-  DataRoles? selectedRole;
+  int selectedRoleId = 0;
+  List<DataRoles> roles = [];
   TextEditingController phoneCtrl = TextEditingController();
   TextEditingController roleCtrl = TextEditingController();
   TextEditingController emailCtrl = TextEditingController();
@@ -62,6 +63,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text('Error Update'),
                 );
               case UpdateSuccess:
+                String roleName = "";
+                for (var i = 0; i < roles.length; i++) {
+                  if (roles[i].id == selectedRoleId) {
+                    roleName = roles[i].name.toString();
+                  }
+                }
                 final success = state as UpdateSuccess;
                 id = "${success.modelUpdate.id}";
                 phoneCtrl.text = "${success.modelUpdate.phoneNumber}";
@@ -75,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           IconButton(
                             onPressed: () {
                               BlocProvider.of<BlocBloc>(context).add(
-                                  UpdateEvent(phoneCtrl.text, selectedGender, emailCtrl.text, id, selectedRole!));
+                                  UpdateEvent(phoneCtrl.text, selectedGender,
+                                      emailCtrl.text, id, selectedRoleId));
                               setState(() {
                                 update = !update;
                               });
@@ -91,9 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                               child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    update = !update;
-                                  });
+                                  if(update == false){
+                                    showDialogForUpdate(context);
+                                  }
                                 },
                                 child: Card(
                                     shape: RoundedRectangleBorder(
@@ -133,9 +141,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                               child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    update = !update;
-                                  });
+                                  if(update == false){
+                                    showDialogForUpdate(context);
+                                  }
                                 },
                                 child: Card(
                                     shape: RoundedRectangleBorder(
@@ -174,9 +182,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                               child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    update = !update;
-                                  });
+                                  if(update == false){
+                                    showDialogForUpdate(context);
+                                  }
                                 },
                                 child: Card(
                                     shape: RoundedRectangleBorder(
@@ -188,8 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.w500)),
                                       !update
-                                          ? Text(
-                                              "${success.modelUpdate.gender}",
+                                          ? Text("${roleName}",
                                               style: const TextStyle(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500))
@@ -203,19 +210,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             hint: const Text(
                                                                 "Enter Role"),
                                                             items: dataHere.data?.map<
-                                                                    DropdownMenuItem<
-                                                                        DataRoles>>(
-                                                                (item) {
+                                                                DropdownMenuItem<
+                                                                    int>>((item) {
                                                               return DropdownMenuItem(
-                                                                  value: selectedRole,
-                                                                  child: Text(
-                                                                      item.name!));
+                                                                  value:
+                                                                      item.id,
+                                                                  child: Text(item
+                                                                      .name!));
                                                             }).toList(),
                                                             onChanged: (value) {
-                                                              setState(() {
-                                                                selectedRole = value!;
-                                                              });
-                                                                })
+                                                              selectedRoleId =
+                                                                  value!;
+                                                            },
+                                                          )
                                                         : const Center(
                                                             child:
                                                                 CircularProgressIndicator(),
@@ -228,9 +235,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                               child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    update = !update;
-                                  });
+                                  if(update == false){
+                                    showDialogForUpdate(context);
+                                  }
                                 },
                                 child: Card(
                                     shape: RoundedRectangleBorder(
@@ -250,19 +257,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                           : Expanded(
                                               child: SizedBox(
                                               child: DropdownButtonFormField(
-                                                  hint: const Text("Enter Gender"),
-                                                  items: listGender.map<DropdownMenuItem<String>>((item) {
+                                                  hint: const Text(
+                                                      "Enter Gender"),
+                                                  items: listGender.map<
+                                                      DropdownMenuItem<
+                                                          String>>((item) {
                                                     return DropdownMenuItem(
-                                                        value: selectedGender,
+                                                        value: item,
                                                         child: Text(item));
                                                   }).toList(),
                                                   onChanged: (value) {
-                                                    setState(() {
-                                                      selectedGender = value!;
-                                                    });
-                                                  }
-                                              )
-                                                ,
+                                                    selectedGender = value!;
+                                                  }),
                                             ))
                                     ])),
                               )),
@@ -278,7 +284,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           IconButton(
                             onPressed: () {
                               BlocProvider.of<BlocBloc>(context).add(
-                                  UpdateEvent(emailCtrl.text,phoneCtrl.text,id, selectedGender, selectedRole!));
+                                  UpdateEvent(phoneCtrl.text, selectedGender,
+                                      emailCtrl.text, id, selectedRoleId));
                               setState(() {
                                 update = !update;
                               });
@@ -294,9 +301,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                               child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    update = !update;
-                                  });
+                                  if(update == false){
+                                    showDialogForUpdate(context);
+                                  }
                                 },
                                 child: Card(
                                     shape: RoundedRectangleBorder(
@@ -336,9 +343,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                               child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    update = !update;
-                                  });
+                                  if(update == false){
+                                    showDialogForUpdate(context);
+                                  }
                                 },
                                 child: Card(
                                     shape: RoundedRectangleBorder(
@@ -378,9 +385,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                               child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    update = !update;
-                                  });
+                                  if(update == false){
+                                    showDialogForUpdate(context);
+                                  }
                                 },
                                 child: Card(
                                     shape: RoundedRectangleBorder(
@@ -408,18 +415,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             hint: const Text(
                                                                 "Enter Role"),
                                                             items: dataHere.data?.map<
-                                                                    DropdownMenuItem<
-                                                                        String>>(
-                                                                (item) {
+                                                                DropdownMenuItem<
+                                                                    int>>((item) {
                                                               return DropdownMenuItem(
-                                                                  value: selectedRole!.name!,
-                                                                  child: Text(
-                                                                      selectedRole!.name!));
+                                                                  value:
+                                                                      item.id,
+                                                                  child: Text(item
+                                                                      .name!));
                                                             }).toList(),
-                                                            onChanged: (value){
-
+                                                            onChanged: (value) {
+                                                              selectedRoleId =
+                                                                  value!;
                                                             },
-                                                    )
+                                                          )
                                                         : const Center(
                                                             child:
                                                                 CircularProgressIndicator(),
@@ -432,9 +440,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                               child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    update = !update;
-                                  });
+                                  if(update == false){
+                                    showDialogForUpdate(context);
+                                  }
                                 },
                                 child: Card(
                                     shape: RoundedRectangleBorder(
@@ -456,19 +464,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   width: 150,
                                                   child:
                                                       DropdownButtonFormField(
-                                                          hint: const Text("Enter Gender"),
-                                                          items: listGender.map<DropdownMenuItem<String>>((item) {
+                                                          hint: const Text(
+                                                              "Enter Gender"),
+                                                          items: listGender.map<
+                                                              DropdownMenuItem<
+                                                                  String>>((item) {
                                                             return DropdownMenuItem(
-                                                                value: selectedGender,
-                                                                child: Text(item));
+                                                                value: item,
+                                                                child:
+                                                                    Text(item));
                                                           }).toList(),
                                                           onChanged: (value) {
-                                                            setState(() {
-                                                              selectedGender = value!;
-                                                            });
-                                                          }
-                                                      )
-                                              ),
+                                                            selectedGender =
+                                                                value!;
+                                                          })),
                                             )
                                     ])),
                               )),
@@ -481,7 +490,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ));
   }
 
-  Future<List<DataRoles>> getRoleList() async {
+  Future<List<DataRoles>?> getRoleList() async {
     var client = http.Client();
     ModelGetRoles modelGetRoles = ModelGetRoles();
 
@@ -494,8 +503,10 @@ class _HomeScreenState extends State<HomeScreen> {
       modelGetRoles = ModelGetRoles.fromJson(json.decode(response.body));
       log(response.body.toString());
       log(modelGetRoles.data.toString());
-      List<String> roles = [];
-      return modelGetRoles.data!;
+      modelGetRoles.data?.forEach((element) {
+        roles.add(element);
+      });
+      return modelGetRoles.data;
     } catch (e) {
       log(modelGetRoles.data.toString());
       log(e.toString());
@@ -503,4 +514,25 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  showDialogForUpdate(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Update Info"),
+            content: const Text("Do you want to update Info"),
+            actions: <Widget>[
+              TextButton(onPressed: () {
+                Navigator.of(context).pop();
+              },child: const Text("No")),
+              TextButton(onPressed: () {
+               setState(() {
+                 update = !update;
+                 Navigator.of(context).pop();
+               });
+              }, child: const Text('Yes'))
+            ],
+          );
+        });
+  }
 }

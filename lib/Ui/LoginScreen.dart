@@ -15,9 +15,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController phoneCtrl = TextEditingController();
   TextEditingController pinCtrl = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    phoneCtrl.text = '9090909090';
+    pinCtrl.text = '101010';
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
@@ -53,8 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Center(
                   child: MaterialButton(
-                    onPressed: () => BlocProvider.of<BlocBloc>(context)
-                        .add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
+                    onPressed: () => BlocProvider.of<BlocBloc>(context).add(LoginFetchEvent(phoneCtrl.text, pinCtrl.text)),
                     color: Colors.blue,
                     child: const Text('Submit',
                         style: TextStyle(color: Colors.white)),

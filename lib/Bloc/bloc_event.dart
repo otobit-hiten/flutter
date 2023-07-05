@@ -13,7 +13,7 @@ class UpdateEvent extends BlocEvent{
   final String email;
   final String phoneNumber;
   final String gender;
-  final DataRoles role;
+  final int roleId;
   final String id;
-  UpdateEvent(this.email, this.id, this.phoneNumber, this.gender, this.role);
+  UpdateEvent(this.phoneNumber, this.gender, this.email, this.id, this.roleId);
 }

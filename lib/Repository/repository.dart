@@ -33,17 +33,18 @@ class LoginRepo extends Repository {
     }
   }
 
-  Future<ModelUpdate> update(String email, String id, String phoneNumber, String  gender, DataRoles role) async {
+  Future<ModelUpdate> update(String phoneNumber, String  gender, String email, String id,  int roleId) async {
     try {
       log(id);
       log(phoneNumber);
       log(gender);
       log(email);
+      log(roleId.toString());
       final bodyy = jsonEncode({
         "phoneNumber": phoneNumber,
         "email": email,
         "gender": gender,
-        "role": role
+        "role": roleId
       });
 
       var response = await client.patch(Uri.parse('http://192.168.1.221:4000/user/$id'),

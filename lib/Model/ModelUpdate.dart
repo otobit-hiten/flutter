@@ -3,6 +3,7 @@ class ModelUpdate {
   String? email;
   Null? lastLogin;
   Null? lastActivity;
+  int? role;
   String? gender;
   String? phoneNumber;
   Null? birthdate;
@@ -20,7 +21,8 @@ class ModelUpdate {
         this.phoneNumber,
         this.pin,
         this.message,
-        this.stack
+        this.stack,
+        this.role
       });
 
   ModelUpdate.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class ModelUpdate {
     birthdate = json['birthdate'];
     pin = json['pin'];
     phoneNumber = json['phoneNumber'];
+    role = json['role'];
     message = json['message'];
     stack = json['stack'];
   }
@@ -45,6 +48,7 @@ class ModelUpdate {
     data['gender'] = this.gender;
     data['birthdate'] = this.birthdate;
     data['pin'] = this.pin;
+    data['role'] = this.role;
     data['phoneNumber'] = this.phoneNumber;
     return data;
   }

@@ -27,7 +27,7 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
      }
      if(event is UpdateEvent){
        emit(UpdateLoading());
-       modelUpdate = await loginRepo.update(event.phoneNumber, event.gender, event.email, event.id, event.role);
+       modelUpdate = await loginRepo.update(event.phoneNumber, event.gender, event.email, event.id, event.roleId);
        if(modelUpdate.id != null){
          emit(UpdateSuccess(modelUpdate));
        }else{
