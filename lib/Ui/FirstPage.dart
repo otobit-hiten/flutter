@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_login/Bloc/bloc_bloc.dart';
+import 'package:flutter_login/Bloc/LoginBloc/bloc_bloc.dart';
 import 'package:flutter_login/Model/ModelUpdate.dart';
 import 'package:flutter_login/Repository/repository.dart';
 import 'package:flutter_login/Ui/ErrorScreen.dart';
 import 'package:flutter_login/Ui/HomeScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Display.dart';
 import 'LoginScreen.dart';
 
 class FirstPage extends StatefulWidget {
@@ -38,7 +39,7 @@ class _FirstPageState extends State<FirstPage> {
         return const LoginScreen();
       }, listener: (context, state) {
         if (state is LoginSuccessState) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(state.data)));
+          Navigator.push(context, MaterialPageRoute<String>(builder: (context) => Display(state.data.data?.user?.id)));
         } else if (state is LoginErrorState) {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ErrorScreen()));
         }

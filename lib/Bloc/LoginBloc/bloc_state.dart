@@ -24,3 +24,15 @@ class UpdateSuccess extends BlocState{
   final ModelUpdate modelUpdate;
   UpdateSuccess(this.modelUpdate);
 }
+
+class GetUserByIdInitial extends BlocState{}
+
+class GetUserLoading extends BlocState{}
+
+class GetUserByError extends BlocState{}
+
+class GetUserBySuccess extends BlocState{
+  final ModelGetUserById modelGetUserById;
+  GetUserBySuccess(this.modelGetUserById);
+}
+

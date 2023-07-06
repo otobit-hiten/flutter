@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_login/Model/ModelGetRole.dart';
 import 'package:http/http.dart' as http;
 import '../Model/LoginModel.dart';
+import '../Model/ModelGetUserById.dart';
 import '../Model/ModelUpdate.dart';
 
 
@@ -16,6 +17,7 @@ class LoginRepo extends Repository {
   late LoginModel loginModel;
   String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg4MzgwOTIxLCJleHAiOjE2OTAxMDg5MjF9.ZsOQbwM4FGcrwcahazulZgf_iGM6og-jVJNPZGpxi7I";
   ModelUpdate updateModel = ModelUpdate();
+  ModelGetUserById modelGetUserById = ModelGetUserById();
 
   @override
   Future<LoginModel> loginCall(String phoneNumber, String pin) async {
@@ -35,11 +37,8 @@ class LoginRepo extends Repository {
 
   Future<ModelUpdate> update(String phoneNumber, String  gender, String email, String id,  int roleId) async {
     try {
-      log(id);
-      log(phoneNumber);
-      log(gender);
-      log(email);
-      log(roleId.toString());
+      log(id + phoneNumber + email + roleId.toString() + gender);
+
       final bodyy = jsonEncode({
         "phoneNumber": phoneNumber,
         "email": email,
@@ -62,5 +61,16 @@ class LoginRepo extends Repository {
     }
   }
 
+  Future<ModelGetUserById> getUserById(int id) async{
+    try{
+      var response = await client.get(Uri.parse("http://192.168.1.221:4000/user/$id"));
+      modelGetUserById = ModelGetUserById.fromJson(jsonDecode(response.body));
+      log("GetUserByIdResponse: ${response.body}");
+      return modelGetUserById;
+    }catch(e){
+      log("GetUserByIdError : ${e.toString()}");
+      throw Exception("Failed to Get User");
+    }
+  }
 }
 

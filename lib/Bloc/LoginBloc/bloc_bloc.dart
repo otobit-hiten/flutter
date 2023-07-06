@@ -1,16 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_login/Model/LoginModel.dart';
-import 'package:flutter_login/Model/ModelGetRole.dart';
 import 'package:flutter_login/Model/ModelUpdate.dart';
 import 'package:flutter_login/Repository/repository.dart';
 import 'package:meta/meta.dart';
-
+import '../../Model/ModelGetUserById.dart';
 part 'bloc_event.dart';
 part 'bloc_state.dart';
 
 class BlocBloc extends Bloc<BlocEvent, BlocState> {
   late LoginModel loginModel;
   late ModelUpdate modelUpdate;
+  late ModelGetUserById modelGetUserById;
   final LoginRepo loginRepo;
 
   BlocBloc(this.loginRepo) : super(BlocInitial()) {
@@ -26,6 +26,7 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
          emit(LoginErrorState());
        }
      }
+
      if(event is UpdateEvent){
        emit(UpdateLoading());
        await Future.delayed(Duration(seconds: 1));
@@ -34,6 +35,16 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
          emit(UpdateSuccess(modelUpdate));
        }else{
          emit(UpdateError());
+       }
+     }
+
+     if(event is GetUserById){
+       emit(GetUserLoading());
+       modelGetUserById = await loginRepo.getUserById(event.id);
+       if(modelGetUserById.data?.id != null){
+         emit(GetUserBySuccess(modelGetUserById));
+       }else{
+         emit(GetUserByError());
        }
      }
     });

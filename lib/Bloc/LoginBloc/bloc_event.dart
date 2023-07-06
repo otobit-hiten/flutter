@@ -17,3 +17,8 @@ class UpdateEvent extends BlocEvent{
   final String id;
   UpdateEvent(this.phoneNumber, this.gender, this.email, this.id, this.roleId);
 }
+
+class GetUserById extends BlocEvent{
+  final int id;
+  GetUserById(this.id);
+}

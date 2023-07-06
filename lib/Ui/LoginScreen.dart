@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_login/Ui/ErrorScreen.dart';
 
-import '../Bloc/bloc_bloc.dart';
+import '../Bloc/LoginBloc/bloc_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
