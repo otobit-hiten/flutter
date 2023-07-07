@@ -18,7 +18,7 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  final BlocBloc blocBloc = BlocBloc(LoginRepo());
+  final BlocBloc blocBloc = BlocBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +27,6 @@ class _FirstPageState extends State<FirstPage> {
       create: (_) => blocBloc,
       child: BlocConsumer<BlocBloc, BlocState>(
           builder: (BuildContext context, state) {
-        if (state is LoginLoading) {
-          return const MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-          );
-        }
         return const LoginScreen();
       }, listener: (context, state) {
         if (state is LoginSuccessState) {

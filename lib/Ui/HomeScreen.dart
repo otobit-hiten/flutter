@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_login/Bloc/LoginBloc/bloc_bloc.dart';
 import 'package:flutter_login/Model/LoginModel.dart';
 import 'package:flutter_login/Model/ModelGetRole.dart';
-import '../Repository/repository.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final BlocBloc blocBloc = BlocBloc(LoginRepo());
+  final BlocBloc blocBloc = BlocBloc();
   bool update = false;
   String token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg4NTMyMTk3LCJleHAiOjE2OTAyNjAxOTd9.eZGQ-qjqQb_wlNnwL_9PpdURXKzgN1jc1aClz2SYJdc";

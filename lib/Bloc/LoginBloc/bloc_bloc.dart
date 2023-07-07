@@ -11,10 +11,9 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
   late LoginModel loginModel;
   late ModelUpdate modelUpdate;
   late ModelGetUserById modelGetUserById;
-  final LoginRepo loginRepo;
 
-  BlocBloc(this.loginRepo) : super(BlocInitial()) {
-
+  BlocBloc() : super(BlocInitial()) {
+    final LoginRepo loginRepo = LoginRepo();
     on<BlocEvent>((event, emit) async {
      if(event is LoginFetchEvent){
        emit(LoginLoading());
@@ -40,6 +39,7 @@ class BlocBloc extends Bloc<BlocEvent, BlocState> {
 
      if(event is GetUserById){
        emit(GetUserLoading());
+       await Future.delayed(Duration(seconds: 2));
        modelGetUserById = await loginRepo.getUserById(event.id);
        if(modelGetUserById.data?.id != null){
          emit(GetUserBySuccess(modelGetUserById));
