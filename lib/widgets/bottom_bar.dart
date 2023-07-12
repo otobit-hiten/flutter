@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui/screen/home.dart';
 import 'package:ui/screen/profile.dart';
-import 'search.dart';
-import 'ticket.dart';
+import '../screen/search.dart';
+import '../screen/ticket.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -25,7 +25,8 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
         body: Center(
             child:pages[_selectedIndex]
         ),
@@ -33,7 +34,7 @@ class _BottomBarState extends State<BottomBar> {
               showSelectedLabels: false,
               type: BottomNavigationBarType.fixed,
               showUnselectedLabels: false,
-              selectedItemColor: Colors.teal,
+              selectedItemColor: const Color(0xff212E52),
               unselectedItemColor: Colors.grey,
               onTap: selectedPage,
               currentIndex: _selectedIndex,

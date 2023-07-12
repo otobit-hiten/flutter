@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:ui/ticket_list.dart';
+import 'package:ui/screen/hotel_screen.dart';
+import 'package:ui/model/ticket_list.dart';
 import 'package:ui/widgets/ticket_view.dart';
 import 'package:ui/widgets/hotel_view.dart';
-import '../hotel_list.dart';
+import '../model/hotel_list.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,6 +17,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.blueGrey.shade50,
         body: ListView(
@@ -84,7 +86,7 @@ class _HomeState extends State<Home> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
-                                  color: Colors.teal)))
+                                  color: Color(0xff6D859E))))
                     ],
                   ),
                 ],
@@ -109,12 +111,14 @@ class _HomeState extends State<Home> {
                           style: TextStyle(
                               fontWeight: FontWeight.w600, fontSize: 20)),
                       InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HotelScreen()));
+                          },
                           child: const Text("More..",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
-                                  color: Colors.teal)))
+                                  color: Color(0xff6D859E))))
                     ],
                   ),
                 ],
