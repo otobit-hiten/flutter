@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui/screen/Home.dart';
-import 'package:ui/screen/Profile.dart';
-import 'Search.dart';
-import 'Ticket.dart';
+import 'package:ui/screen/home.dart';
+import 'package:ui/screen/profile.dart';
+import 'search.dart';
+import 'ticket.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});

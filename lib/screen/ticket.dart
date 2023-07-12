@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Ticket extends StatefulWidget {
@@ -17,6 +16,6 @@ class _TicketState extends State<Ticket> {
           title: const Text("Ticket"),
         ),
       ),
-    );;
+    );
   }
 }

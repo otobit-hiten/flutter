@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:ui/screen/TicketView.dart';
+import 'package:ui/ticket_list.dart';
+import 'package:ui/widgets/ticket_view.dart';
 import 'package:ui/widgets/hotel_view.dart';
-
-import '../HotelList.dart';
+import '../hotel_list.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -22,10 +21,10 @@ class _HomeState extends State<Home> {
         body: ListView(
           children: [
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  Gap(40),
+                  const Gap(40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -54,9 +53,10 @@ class _HomeState extends State<Home> {
                       ),
                     ],
                   ),
-                  Gap(20),
+                  const Gap(20),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white),
@@ -71,16 +71,16 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
-                  Gap(30),
+                  const Gap(30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Upcoming Flights",
+                      const Text("Upcoming Flights",
                           style: TextStyle(
                               fontWeight: FontWeight.w600, fontSize: 20)),
                       InkWell(
                           onTap: () {},
-                          child: Text("More..",
+                          child: const Text("More..",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
@@ -90,27 +90,27 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            Gap(15),
-            const SingleChildScrollView(
+            const Gap(15),
+            SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: [TicketView(), TicketView()],
+                children: ticketList.map((e) => TicketView(ticket: e)).toList(),
               ),
             ),
-            Gap(5),
+            const Gap(5),
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Hotels",
+                      const Text("Hotels",
                           style: TextStyle(
                               fontWeight: FontWeight.w600, fontSize: 20)),
                       InkWell(
                           onTap: () {},
-                          child: Text("More..",
+                          child: const Text("More..",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
@@ -120,15 +120,13 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            Gap(5),
+            const Gap(5),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: hotelList.map((e) => HotelView(hotel: e)).toList()
-              ),
+                  children: hotelList.map((e) => HotelView(hotel: e)).toList()),
             ),
-            Gap(30),
-
+            const Gap(30),
           ],
         ),
       ),
